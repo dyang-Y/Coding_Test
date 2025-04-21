@@ -1,0 +1,18 @@
+-- 코드를 작성해주세요
+select ID, FISH_NAME, LENGTH
+from FISH_INFO
+join FISH_NAME_INFO
+on FISH_INFO.fish_type = FISH_NAME_INFO.fish_type
+where (FISH_INFO.fish_type, LENGTH) in (select fish_type, max(LENGTH) from FISH_INFO group by FISH_TYPE)
+order by ID ASC;
+
+# SELECT F.ID, N.FISH_NAME, F.LENGTH
+# FROM FISH_INFO F
+# JOIN FISH_NAME_INFO N ON F.FISH_TYPE = N.FISH_TYPE
+# WHERE (F.FISH_TYPE, F.LENGTH) IN (
+#     SELECT FISH_TYPE, MAX(LENGTH)
+#     FROM FISH_INFO
+#     WHERE LENGTH IS NOT NULL
+#     GROUP BY FISH_TYPE
+# )
+# ORDER BY F.ID ASC;
